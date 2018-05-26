@@ -23,12 +23,12 @@ export class CurrencyFormatDirective {
     this.element.nativeElement.value = this.formatNumber(value);
   }
 
-  private formatCurrency(numberToFormat: string) {
+  public formatCurrency(numberToFormat: string, currencyCode: string = 'USD') {
     return parseFloat(numberToFormat)
-      .toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 4 });
+      .toLocaleString('en-US', { style: 'currency', currency: currencyCode, maximumFractionDigits: 4 });
   }
 
-  private formatNumber(currencyToFormat: string) {
+  public formatNumber(currencyToFormat: string) {
     const regexComma = new RegExp(',', 'gm');
 
     return currencyToFormat

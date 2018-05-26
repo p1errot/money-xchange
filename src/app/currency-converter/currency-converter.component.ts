@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
+import { CurrencyFormatDirective } from '../shared/currency-format.directive';
 
 @Component({
   selector: 'mx-currency-converter',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currency-converter.component.scss']
 })
 export class CurrencyConverterComponent implements OnInit {
+  convertionDate = '2018-05-26';
   currencyInput;
   currencyValue;
 
@@ -14,8 +16,12 @@ export class CurrencyConverterComponent implements OnInit {
   ngOnInit() {
   }
 
-  calculateConversion(currency:any) {
-    this.currencyValue = currency;
+  calculateConversion(currency: any) {
+    const currencyFormatDirective = new CurrencyFormatDirective(null);
+
+    let plainNumber = currencyFormatDirective.formatNumber(currency) || '0';
+
+    this.currencyValue = currencyFormatDirective.formatCurrency(plainNumber, 'EUR');
   }
 
 }
