@@ -1,0 +1,49 @@
+@import "colors";
+@import "variables";
+
+.site-header {
+    background: $white;
+}
+
+.logo {
+    padding: 1em 0;
+
+    @media screen and (min-width: $screen-sm) {
+        padding: 3em 0;
+    }
+}
+
+.logo__container {
+    background: $gray-25;
+    margin: 0 1em;
+    height: 2em;
+    width: 2em;
+
+    @media screen and (min-width: $screen-sm) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .logo__link {
+        color: $black;
+    }
+
+    .logo__icon {
+        top: 0.1em;
+    }
+}
+
+.header-nav {
+    justify-content: center;
+    padding-bottom: 3em;
+    max-width: $screen-md;
+    width: 100%;
+
+    @media screen and (max-width: $screen-sm) {
+        display: none;
+    }
+
+    a {
+        margin: 0 15px;
+    }
+}
