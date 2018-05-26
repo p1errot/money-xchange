@@ -9,10 +9,31 @@ export class CurrencyFormatDirective {
   constructor(private element: ElementRef) { }
 
   @HostListener('blur') onBlur() {
-    let value: string = this.element.nativeElement.value,
-      matchingNumbers: Array<any> | null = value.match(/(([0-9]+)(\,|\.)([0-9]{0,4})|([0-9]+))/);
+    const onlyNumbersWithDecimalsPattern = /(([0-9]+)(\,|\.)([0-9]{0,4})|([0-9]+))/;
 
-    this.element.nativeElement.value = matchingNumbers ? matchingNumbers[0].replace(',', '.') : '';
+    let value: string = this.element.nativeElement.value,
+      matchingNumbers: Array<any> | null = value.match(onlyNumbersWithDecimalsPattern);
+
+    this.element.nativeElement.value = matchingNumbers ? this.formatCurrency(matchingNumbers[0]) : '';
+  }
+
+  @HostListener('focus') onfocus() {
+    let value: string = this.element.nativeElement.value;
+
+    this.element.nativeElement.value = this.formatNumber(value);
+  }
+
+  private formatCurrency(numberToFormat: string) {
+    return parseFloat(numberToFormat)
+      .toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 4 });
+  }
+
+  private formatNumber(currencyToFormat: string) {
+    const regexComma = new RegExp(',', 'gm');
+
+    return currencyToFormat
+      .substr(1)
+      .replace(regexComma, '');
   }
 
 }
