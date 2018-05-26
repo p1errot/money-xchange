@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currency-converter.component.scss']
 })
 export class CurrencyConverterComponent implements OnInit {
+  currencyInput;
+  currencyValue;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  calculateConversion(currency:any) {
+    this.currencyValue = currency;
   }
 
 }

@@ -2,13 +2,17 @@
   <div class="container">
     <div class="converter-form row">
       <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <input type="text" class="converter-form__input form-control" placeholder="USD"/>
+        <input type="text" class="converter-form__input form-control" placeholder="USD"
+          #currencyInput
+          [mxCurrencyFormat] />
       </div>
       <div class="col-xs-12 col-sm-5">
-        <input type="text" class="converter-form__input form-control" placeholder="EUR" />
+        <input type="text" class="converter-form__input form-control" placeholder="EUR" 
+          value="{{ currencyValue }}"
+          [readonly]="true" />
       </div>
       <div class="col-xs-12 text-center">
-        <button class="converter-form__submit btn btn-submit">Calculate</button>
+        <button class="converter-form__submit btn btn-submit" (click)="calculateConversion(currencyInput.value)">Calculate</button>
       </div>
     </div>
   </div>
