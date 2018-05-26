@@ -9,6 +9,10 @@
 .converter-form__input {
     margin-bottom: 15px;
     text-align: center;
+
+    &[readonly] {
+        background-color: $white;
+    }
 }
 
 .converter-form__submit {
