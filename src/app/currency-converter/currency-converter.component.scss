@@ -5,3 +5,20 @@
     background-color: $bg-gray-concret;
     padding: 35px 0;
 }
+
+.converter-form__input {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.converter-form__submit {
+    background-color: $bg-gray-concret-dark;
+    border-radius: 0;
+    color: $white;
+    margin-top: 40px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-transform: uppercase;
+    max-width: 350px;
+    width: 100%;
+}
