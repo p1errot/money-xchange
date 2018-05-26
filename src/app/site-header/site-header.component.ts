@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'site-header',
+  selector: 'mx-site-header',
   templateUrl: './site-header.component.html',
   styleUrls: ['./site-header.component.scss']
 })
