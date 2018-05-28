@@ -4,15 +4,15 @@ import { Directive, HostListener, ElementRef, Input } from '@angular/core';
   selector: '[mxCurrencyFormat]'
 })
 export class CurrencyFormatDirective {
-  @Input('mxCurrencyFormat') format;
+  @Input() mxCurrencyFormat;
 
-  constructor(private element: ElementRef) { }
+  constructor(private element?: ElementRef) { }
 
   @HostListener('blur') onBlur() {
     const onlyNumbersWithDecimalsPattern = /(([0-9]+)(\,|\.)([0-9]{0,4})|([0-9]+))/;
 
     let value: string = this.element.nativeElement.value,
-      matchingNumbers: Array<any> | null = value.match(onlyNumbersWithDecimalsPattern);
+      matchingNumbers: any[] | null = value.match(onlyNumbersWithDecimalsPattern);
 
     this.element.nativeElement.value = matchingNumbers ? this.formatCurrency(matchingNumbers[0]) : '';
   }

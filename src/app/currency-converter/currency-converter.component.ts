@@ -1,5 +1,7 @@
 import { Component, Directive, OnInit } from '@angular/core';
+
 import { CurrencyFormatDirective } from '../shared/currency-format.directive';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'mx-currency-converter',
@@ -7,21 +9,38 @@ import { CurrencyFormatDirective } from '../shared/currency-format.directive';
   styleUrls: ['./currency-converter.component.scss']
 })
 export class CurrencyConverterComponent implements OnInit {
-  convertionDate = '2018-05-26';
-  currencyInput;
-  currencyValue;
+  private currencyFormatDirective = new CurrencyFormatDirective();
+  convertionDate = '';
+  currencyInput: string = '';
+  currencyValue: string = '';
+  currencyBase: string = 'USD';
+  currencyTarget: string = 'EUR';
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
   }
 
-  calculateConversion(currency: any) {
-    const currencyFormatDirective = new CurrencyFormatDirective(null);
+  getConversion(currency: any) {
+    let plainNumber = this.currencyFormatDirective.formatNumber(currency) || '0';
+    
+    this.calculateConvertion(plainNumber);
+  }
+  
+  private getRate(base, target) {
+    return this.apiService.getConvertionRate(base, target);
+  }
+  
+  private calculateConvertion(amountToConvert) {
+    this.getRate(this.currencyBase, this.currencyTarget)
+      .subscribe(response => {
+        let apiResponse = response.json(),
+          convertionRate = apiResponse.rates[this.currencyTarget],
+          convertedAmount = (amountToConvert * convertionRate).toString();
 
-    let plainNumber = currencyFormatDirective.formatNumber(currency) || '0';
-
-    this.currencyValue = currencyFormatDirective.formatCurrency(plainNumber, 'EUR');
+        this.currencyValue = this.currencyFormatDirective.formatCurrency(convertedAmount, this.currencyTarget);
+        this.convertionDate = apiResponse.date;
+      });
   }
 
 }
