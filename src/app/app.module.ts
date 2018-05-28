@@ -7,6 +7,7 @@ import { SiteHeaderComponent } from './site-header/site-header.component';
 import { CurrencyConverterComponent } from './currency-converter/currency-converter.component';
 import { CurrencyFormatDirective } from './shared/currency-format.directive';
 import { ApiService } from './shared/api.service';
+import { SiteFooterComponent } from './site-footer/site-footer.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ApiService } from './shared/api.service';
     AppComponent,
     SiteHeaderComponent,
     CurrencyConverterComponent,
-    CurrencyFormatDirective
+    CurrencyFormatDirective,
+    SiteFooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+@import "colors";
+
+.site-footer {
+    background-color: $bg-gray-concret;
+    padding-bottom: 50px;
+    padding-top: 70px;
+}
+
+.icon-footer {
+    background-color: $bg-gray-concret-dark;
+    display: inline-block;
+    height: 45px;
+    margin-right: 10px;
+    width: 45px;
+}
